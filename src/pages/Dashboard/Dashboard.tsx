@@ -3,7 +3,7 @@ import { NativeModules, Platform, Text } from "react-native";
 import { Container } from "../LandPage/styles"
 import { Title, Header, IconsContainer } from "./styles"
 import Icon from "react-native-vector-icons/EvilIcons"
-import { Icon as Entypo } from "react-native-vector-icons/Entypo"
+import Entypo  from "react-native-vector-icons/Entypo"
 
 function Dashboard() {
 
