@@ -1,46 +1,70 @@
 import React from "react"
-import { NativeModules, Platform, Text } from "react-native";
-import { Container } from "../LandPage/styles"
-import { Title, Header, IconsContainer } from "./styles"
-import Icon from "react-native-vector-icons/EvilIcons"
-import Entypo  from "react-native-vector-icons/Entypo"
+import { Container } from "../LandPage/styles";
+import { CardContainer } from "./styles"
+import { Header, RecentCard } from "./Components"
+import { View, ScrollView, FlatList, Dimensions } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-function Dashboard() {
+const mockData = [
+  {
+    title: "teste1"
+  },
+  {
+    title: "teste2"
+  },
+  {
+    title: "teste3"
+  },
+  {
+    title: "teste4"
+  },
+  {
+    title: "teste5"
+  },
+  {
+    title: "teste6"
+  },
+]
 
-  const [stateTime, setStateTime] = React.useState<string>();
-
-  function getCurrentTime() {
-    const currentHour = new Date().getHours()
-
-    if (currentHour < 12) setStateTime("morning")
-    else if (currentHour < 18) setStateTime("afternoon")
-    else setStateTime("evening")
-  }
-
-  // function locale() {
-  //   const deviceLang = Platform.OS === "ios" ? 
-  //     NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] 
-  //   : NativeModules.I18nManager.localeIdentifier ;
-  //   console.log(deviceLang) 
-  // }
-
-  React.useEffect(() => {
-    getCurrentTime()
-    // locale()
-  }, [])
-
+export function Dashboard() {
   return (
-    <Container>
-      <Header>
-        <Title>Good {stateTime}</Title>
-        <IconsContainer>
-          <Icon name="bell" size={20} style={{color: "white", alignSelf: "flex-end"}} />
-          <Icon name="bell" size={20} style={{color: "white", alignSelf: "flex-end"}} />
-          <Entypo name="bell" size={20} style={{color: "white", alignSelf: "flex-end"}} />
-        </IconsContainer>
-      </Header>
-    </Container>
+    <SafeAreaView style={{flex: 1, backgroundColor: "black", padding: 12, justifyContent: "space-between"}}>
+      <ScrollView 
+        nestedScrollEnabled 
+        style={{flex: 1, backgroundColor: "black"}} 
+        contentContainerStyle={{flexGrow: .5, justifyContent: "space-between"}}
+      >
+        <Header/>
+        <CardContainer>
+          <View style={{flex: 1}}>
+            {
+              mockData.slice(0,3).map((item, index) => (
+                <RecentCard key={index} title={item.title}/>
+              ))
+            }
+          </View>
+          <View style={{flex: 1}}>
+              {
+              mockData.slice(3).map((item, index) => (
+                <RecentCard key={index} title={item.title}/>
+              ))
+            }
+          </View>
+        </CardContainer>
+        <View>
+          <ScrollView 
+            horizontal 
+            contentContainerStyle={{flexGrow: 1}}>
+            {
+              mockData.map((item, index) => (
+                <RecentCard key={index} title={item.title}/>
+              ))
+            }
+          </ScrollView>
+        </View>
+        <View style={{flex: 6}}>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
-
-export default Dashboard;
