@@ -4,7 +4,7 @@ import { Text } from "react-native"
 import Button from "../../components/Button/Button"
 import { useNavigation } from "@react-navigation/native"
 
-function LandPage() {
+export function LandPage() {
 
   const navigation = useNavigation();
 
@@ -36,5 +36,3 @@ function LandPage() {
     </Container>
   )
 }
-
-export default LandPage;
