@@ -1,9 +1,8 @@
 import React from "react"
-import { NavigationContainer, NavigationProp } from "@react-navigation/native"
+import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-import Dashboard from "../pages/Dashboard/Dashboard"
-import LandPage from "../pages/LandPage/LandPage"
+import { Dashboard, LandPage } from "../pages"
 
 const Stack = createNativeStackNavigator()
 const Screen = Stack.Screen
